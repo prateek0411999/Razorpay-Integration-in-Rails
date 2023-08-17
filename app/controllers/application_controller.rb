@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
     end
 
     def index
-        @order = AppServices::RazorpayApiService.new.fetch_order("order_MREFW2PF4Vp3tv")
+        @order = AppServices::RazorpayApiService.new.fetch_order("order_MRFl0k0IORZLy6")
     end
 end

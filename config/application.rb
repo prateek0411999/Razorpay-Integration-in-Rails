@@ -23,6 +23,13 @@ module Payment
 
     #autoload lib
     config.autoload_paths += Dir[File.join(Rails.root, 'lib', '/**/', '*.rb')].each{|l| require l}
+    
+    config.action_dispatch.default_headers = {
+      'Access-Control-Allow-Origin' => '*',
+      'Access-Control-Request-Method' => '*'
+    }
+
+   
 
   end
 end

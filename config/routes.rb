@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   post '/create_order', to: "application#create_order"
   get '/index', to: "application#index"
+
+  post '/webhooks/razorpay', to: "webhooks#razorpay"
 end
