@@ -1,0 +1,47 @@
+<p>afadfafaf</p>
+<%= @order.inspect%>
+
+
+<button id="rzp-button1">Pay with Razorpay</button>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "<%= "#{ENV['RAZOR_PAY_ID']}" %>", 
+    "amount": "50000",
+    "currency": "INR",
+    "name": "AgileDock",
+    "description": "Test Transaction",
+    "image": "https://agiledock.com/wp-content/uploads/2021/08/agiledock_logo.png",
+    "order_id": "<%= @order.id%>", 
+    "handler": function (response){
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+    },
+    "prefill": {
+        "name": "Prateek Sharma",
+        "email": "prateek.sharma@example.com",
+        "contact": "9000000000"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
