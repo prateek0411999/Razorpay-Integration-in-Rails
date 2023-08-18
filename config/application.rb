@@ -19,6 +19,7 @@ module Payment
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    #autoload services
     config.autoload_paths += Dir[File.join(Rails.root, 'app/services/*', '*.rb')].each{|l| require l}
 
     #autoload lib
@@ -29,7 +30,7 @@ module Payment
       'Access-Control-Request-Method' => '*'
     }
 
-   
+    config.autoloader = :classic
 
   end
 end
